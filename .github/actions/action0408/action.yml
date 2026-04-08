@@ -1,0 +1,19 @@
+name: Action 0408
+description: A custom GitHub Action for demo 0408 purposes
+inputs:
+  version:
+    description: "Action version"
+    default: "0408"
+    required: false
+runs:
+  using: "composite"
+  steps:
+    - name: Echo version
+      shell: bash
+      run: |
+        echo "Action version: ${{ inputs.version }}"
+
+    - name: Echo Hello World
+      shell: bash
+      run: |
+        echo "Hello World from Action 0408!"
