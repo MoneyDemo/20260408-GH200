@@ -7,6 +7,9 @@ jobs:
     echo:
         runs-on: ubuntu-latest
         steps:
+            - name: checkout
+              uses: actions/checkout@v3
+
             - name: Echo Hello World
               uses: ./.github/actions/action0408.yml
               with:
