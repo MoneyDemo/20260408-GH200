@@ -8,11 +8,22 @@ jobs:
       issues: write
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/github-script@0.8.0
+      - uses: MoneyDemo/github-script-0408@main
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
-            github.issues.createComment({
+            const assignees = context.payload.issue.assignees || []
+
+            if (assignees.length === 0) {
+              await github.issues.addAssignees({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                assignees: [context.payload.issue.user.login]
+              })
+            }
+
+            await github.issues.createComment({
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
