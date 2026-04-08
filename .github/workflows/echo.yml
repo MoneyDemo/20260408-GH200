@@ -11,6 +11,6 @@ jobs:
               uses: actions/checkout@v3
 
             - name: Echo Hello World
-              uses: ./.github/actions/action0408
+              uses: ./.github/actions/action0408.yml
               with:
                 version: "0409"
